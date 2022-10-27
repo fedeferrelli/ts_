@@ -1,23 +1,33 @@
 import { useState, useEffect } from 'react';
-import { Staff } from './types';
+import { INITIAL_DATA } from './assets/appi';
+import { Movies, ResultMovies } from './types';
+import RenderMovie from './Components/RenderMovie';
 
-const MOCKED_DATA = [
+
+//import { Staff } from './types';
+
+/* const MOCKED_DATA = [
   {name: 'fede', lastName: 'ferrelli', age: 48, job: 'CFO', active: true}, 
   {name: 'libera', lastName: 'ferrelli fuster', age: 4, job: 'CEO', active: false},
   {name: 'pau', lastName: 'fuster', age: 35, job: 'CTO', active: true}
-]
+] */
 
 
 function App() {
-const [staff, setStaff] = useState<Array<Staff>>([])
+//const [staff, setStaff] = useState<Array<Staff>>([])
 
-useEffect(() => {
+
+const [movieData, setMovieData] = useState<Movies>(INITIAL_DATA);
+
+
+
+/* useEffect(() => {
   setStaff(MOCKED_DATA)
-}, [])
+}, []) */
 
 
   return (
-    <div className="flex flex-col sm:flex-row sm:flex-wrap justify-evenly pt-8 gap-4">
+    /* <div className="flex flex-col sm:flex-row sm:flex-wrap justify-evenly pt-8 gap-4">
       {staff.map(person=>{
 
         const {name, lastName, active, age, job} = person
@@ -36,7 +46,28 @@ useEffect(() => {
           </div>
         )
         })}
-    </div>
+    </div> */
+
+    <div className="flex flex-col sm:flex-row sm:flex-wrap sm:p-8 gap-2 bg-slate-900 min-h-screen text-white bg-gradient-to-br from-slate-900/50 to-black/75">
+
+      {movieData.results.map(movie =>{
+        return(
+
+<RenderMovie movieToShow={movie} />
+          /* <div key={movie.id} className="w-10/12 py-2 px-3 m-auto sm:w-[300px] border bg-slate-800/20 border-slate-700 rounded-[6px] shadow-lg mb-8 relative overflow-hidden hover:shadow-black/50 ease-in-out duration-300" onClick={()=>handleOnClickToShowOverview()}>
+ <img className=" rounded-full w-full h-[350px]" src='https://image.tmdb.org/t/p/w500${movie.poster_path}' alt={`imagen para ${movie.title}`}/>
+<div className="w-full h-[350px] bg-slate-700/10 text-center text-slate-600">IMAGE</div>
+          <div className="font-semibold text-slate-200 text-center text-xl my-4 tracking-wider">{movie.title}</div>
+         { showOverview && <div className="absolute top-0 bottom-0 right-0 left-0 bg-slate-800/95 flex py-2 px-3 text-slate-300 justify-center items-center text-center tracking-wide font-thin min-w-prose z-10" onClick={()=>handleOnClickToShowOverview()}>{movie.overview} </div>}
+          </div>
+          */
+        )
+        
+      })}
+
+    </div> 
+
+    
   )
 }
 
