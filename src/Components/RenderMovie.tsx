@@ -1,8 +1,29 @@
 import React, { useState} from 'react';
 import { ResultMovies } from '../types'
 
-function RenderMovie({movieToShow}) {
+interface Prop {
+    movieToShow:{
+        "adult": boolean,
+        "backdrop_path": string,
+        "genre_ids": Array<number>,
+        "id": number,
+        "original_language": string,
+        "original_title": string,
+        "overview": string,
+        "popularity": number,
+        "poster_path": string,
+        "release_date": string,
+        "title": string,
+        "video": boolean,
+        "vote_average": number,
+        "vote_count": number
+    } 
+}
 
+
+function RenderMovie({movieToShow} : Prop) {
+
+    
     const {id, poster_path, title, overview} = movieToShow;
 
     const [showOverview, setShowOverview] = useState<boolean>(false);
