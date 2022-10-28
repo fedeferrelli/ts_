@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { INITIAL_DATA } from './assets/appi';
 import { Movies } from './types';
 import RenderMovie from './Components/RenderMovie';
 import { fetchData } from '../src/assets/appi'
@@ -38,17 +37,19 @@ const prevPage = () => {
 
     <div className="sm:p-8 gap-2 bg-slate-900 min-h-screen text-white bg-gradient-to-br from-slate-900/50 to-black/75">
 
+      <h1 className="text-center text-6xl font-bold  pb-10 sm:pb-4">Movies</h1>
+
 
       { !showLoading ? 
       
       <section>
 
-      <div className="w-full flex flex-col justify-center sm:gap-4 sm:flex-row sm:flex-wrap">
+      <div className="w-full flex justify-evenly sm:gap-4 flex-row flex-wrap">
       
       {typeof(movieData) !== 'undefined' && movieData.results.map(movie =>{
         return(
 
-          <div key={movie.id}>
+          <div key={movie.id} className="w-2/5 sm:w-auto">
           <RenderMovie movieToShow = {movie} />
           </div>          
         )        
@@ -63,7 +64,7 @@ const prevPage = () => {
           </section>
           </section>
 :
-          <Loading/>
+          <Loading pageNumber={pageNumber}/>
 
         }
 
