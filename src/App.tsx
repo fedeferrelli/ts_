@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Movies } from './types';
+import { Movies, ResultMovies } from './types';
 import RenderMovie from './Components/RenderMovie';
 import { fetchData } from '../src/assets/appi'
 import Loading from './Components/Loading';
+import ShowDetails from './Components/ShowDetails';
 
 function App() {
 
@@ -10,6 +11,9 @@ function App() {
 const [movieData, setMovieData] = useState<Movies | undefined>();
 const [pageNumber, setPageNumber] = useState<number>(1);
 const [showLoading, setShowLoading] = useState<boolean>(true);
+const [showDetail, setShowDetail] = useState<boolean>(false);
+const [detail, setDetail] = useState<ResultMovies>();
+
 
 
 useEffect(() => {
@@ -32,6 +36,11 @@ const prevPage = () => {
   else setPageNumber(pageNumber - 1)
 }
 
+const handleShowDetail = (movieData:ResultMovies) =>{
+setDetail(movieData)
+setShowDetail(true)
+}
+
   return (
   
 
@@ -50,7 +59,7 @@ const prevPage = () => {
         return(
 
           <div key={movie.id} className="w-2/5 sm:w-auto">
-          <RenderMovie movieToShow = {movie} />
+          <RenderMovie movieToShow = {movie} handleShowDetail={handleShowDetail} />
           </div>          
         )        
       })}
@@ -62,6 +71,14 @@ const prevPage = () => {
             <div className="text-xl border border-slate-700 py-2 px-6">{pageNumber}</div>
             <div className="border border-slate-700 py-2 px-6 rounded-r-full ml-1 cursor-pointer" onClick={()=>nextPage()}> + </div>
           </section>
+
+        {showDetail &&
+         
+        
+        <ShowDetails detail={detail}  setShowDetail={setShowDetail}  handleShowDetail={handleShowDetail} />
+        
+        }
+
           </section>
 :
           <Loading pageNumber={pageNumber}/>
