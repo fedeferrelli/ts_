@@ -79,6 +79,7 @@ function App() {
           </section>
 
           {showDetail && (
+            
             <ShowDetails
               detail={detail}
               setShowDetail={setShowDetail}
